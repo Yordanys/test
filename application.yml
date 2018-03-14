@@ -1,0 +1,133 @@
+cors:
+  allowed-methods: '*'
+
+#elastisearch:
+#  host: localhost
+#  port: 9300
+#  ssl: false
+#  username: 
+#  password: 
+#  transport:
+#    type: TRANSPORT
+#    sniff: false
+#    compress: true
+#  cluster:
+#    name: openair-dev
+
+# Dev
+#elastisearch:
+#  host: kibana-dev.airtrfx.com
+#  port: 9300
+#  ssl: false
+#  username: micro-dev
+#  password: 7(w'wFu[z=u-]D#X
+#  transport:
+#    type: X-PACK
+#    sniff: false
+#    compress: true
+#  cluster:
+#    name: elasticsearch_production
+
+# Prod
+#elastisearch:
+#  host: 031f692fb9de43e59663edde8a2ae140.us-west-2.aws.found.io
+#  port: 9343
+#  ssl: true
+#  username: elastic
+#  password: eOi4Wem6hE5YItxK3GBMMMKz
+#  transport:
+#    type: X-PACK
+#    sniff: false
+#    compress: true
+#  cluster:
+#    name: 031f692fb9de43e59663edde8a2ae140
+    
+elastisearch:
+#  host: 10.0.49.73
+#  host: elasticsearch-dev.securitytrfx.com
+  host: 10.0.177.100
+  port: 9300
+  ssl: false
+  username: micro-dev
+  password: 7(w'wFu[z=u-]D#X
+  transport:
+    type: X-PACK
+    sniff: false
+    compress: true
+  cluster:
+    name: elastic-Development
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+    health-check-url-path: ${management.context-path}/health
+    status-page-url-path: ${management.context-path}/info
+
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types:
+        - text/xml
+        - application/xml
+        - application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+  hystrix:
+    enabled: true  
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+management:
+  context-path: /management
+  security:
+    enabled: false              
+
+server:
+  compression:
+    enabled: true
+    mime-types:
+      - text/xml
+      - application/xml
+      - application/json
+
+spring:
+  cache:
+    type: REDIS
+
+  cloud:
+    config:
+      allowOverride: true
+      overrideNone: true
+      overrideSystemProperties: false
+
+    stream:
+      default:
+        contentType: application/json
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+  rabbitmq:
+    host: localhost
+    username: openair-ms
+    password: openair-ms
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+  sleuth:
+    sampler:
+      percentage: 0
